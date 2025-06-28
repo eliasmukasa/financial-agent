@@ -4,7 +4,7 @@
 
 > **Skip the PDF hunt.** Type “Microsoft Q1 2024” and get a board-room-ready summary—revenue deltas, strategic themes, and executive sound-bites, all in one call.
 
-✅ **Live agent available at [eliaskizito.com](https://eliaskizito.com)**.
+✅ **Live agent available**
 
 ![Screenshot](./screenshot.png)
 *Note: To add a screenshot, save an image named `screenshot.png` in your project's root folder and push it to GitHub.*
@@ -13,7 +13,7 @@
 
 ## 💡 Why I Built It
 
-As a **Client Partner**, I’m constantly asked to translate raw financial results into crisp talking-points for C-level conversations.
+As a **Client Partner**, I’m constantly asked to translate raw financial results into crisp talking-points for growth conversations.
 The traditional workflow is painful: Google → 10-Ks → copy/paste → late-night slides.
 
 This agent collapses that grunt work into a single endpoint so revenue leaders, account managers, and analysts can spend time on **insight—not collection**.
