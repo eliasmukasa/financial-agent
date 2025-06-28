@@ -141,6 +141,10 @@ def analyze_endpoint():
     return jsonify(final_summary)
 
 
+@app.route("/ping", methods=["GET"])
+def ping():
+    return {"ok": True}, 200
+
 # --- Run the Server ---
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
