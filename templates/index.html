@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Financial Agent</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Financial Research Agent</h1>
+            <p>Enter a public company and quarter to generate an automated earnings summary.</p>
+        </header>
+
+        <div class="input-form">
+            <input type="text" id="company-input" placeholder="e.g., Microsoft, Google, Nvidia">
+            <input type="text" id="quarter-input" placeholder="e.g., Q1 2024, Q4 2023">
+            <button id="analyze-button">Analyze</button>
+        </div>
+
+        <div id="results-container">
+            <div class="placeholder">
+                <p>Your AI-generated summary will appear here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW FOOTER SECTION -->
+    <footer class="main-footer">
+        <p>
+            &copy; 2024 <a href="https://www.eliaskizito.com" target="_blank">Elias M. Kizito</a>. All Rights Reserved.
+        </p>
+        <p class="disclaimer">
+            This tool is for informational and educational purposes only. Not financial advice.
+        </p>
+    </footer>
+    <!-- END NEW FOOTER SECTION -->
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
