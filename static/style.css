@@ -3,42 +3,42 @@
 
 /* --- 1. DEFINE COLOR VARIABLES (Dark mode is the default) --- */
 :root {
-    --background-gradient-start: #111827;
-    --background-gradient-end: #374151;
+    --background-gradient-start: #0E1724;
+    --background-gradient-end:   #243047;
     --text-primary: #E5E7EB;
     --text-secondary: #9CA3AF;
-    --text-accent: #60A5FA;
-    --header-gradient-start: #60A5FA;
-    --header-gradient-end: #A78BFA;
-    --card-background: #1F2937;
-    --border-color: #374151;
-    --input-background: #1F2937;
-    --input-focus-border: #60A5FA;
-    --button-background: #2563EB;
-    --button-hover-background: #3B82F6;
+    --text-accent: #38BDF8;
+    --header-gradient-start: #38BDF8;
+    --header-gradient-end: #60A5FA;
+    --card-background: #1A2333;
+    --border-color: #334155;
+    --input-background: #1A2333;
+    --input-focus-border: #38BDF8;
+    --button-background: #1D8EDA;
+    --button-hover-background: #38BDF8;
     --button-disabled-background: #374151;
-    --quote-border: #60A5FA;
-    --link-color: #60A5FA;
+    --quote-border: #38BDF8;
+    --link-color: #38BDF8;
     --loader-track: #374151;
-    --loader-spinner: #60A5FA;
+    --loader-spinner: #38BDF8;
 }
 
 /* --- 2. ADD LIGHT MODE OVERRIDES --- */
 @media (prefers-color-scheme: light) {
     :root {
-        --background-gradient-start: #F9FAFB; /* Light Gray */
-        --background-gradient-end: #E5E7EB;
+        --background-gradient-start: #FFFFFF;
+        --background-gradient-end:   #F1F5F9;
         --text-primary: #1F2937; /* Dark Gray */
         --text-secondary: #4B5563;
         --text-accent: #2563EB;
         --header-gradient-start: #2563EB;
-        --header-gradient-end: #7C3AED;
+        --header-gradient-end: #60A5FA;
         --card-background: #FFFFFF;
         --border-color: #D1D5DB;
         --input-background: #F3F4F6;
         --input-focus-border: #2563EB;
         --button-background: #2563EB;
-        --button-hover-background: #1D4ED8;
+        --button-hover-background: #1E40AF;
         --button-disabled-background: #9CA3AF;
         --quote-border: #2563EB;
         --link-color: #2563EB;
@@ -79,6 +79,65 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    /* --- Glassmorphism Effect --- */
+    background-color: rgba(255, 255, 255, 0.08);  /* brighten container in dark mode */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-radius: 1rem; /* Softer edges */
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */ /* Replaced by gradient border */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); /* Softer, more spread out shadow */
+    padding: 2rem; /* Add padding if not already sufficient */
+    position: relative; /* Needed for pseudo-element positioning */
+    z-index: 1; /* Ensure content is above pseudo-element */
+}
+
+/* Gradient Border for Container */
+.container::before {
+    content: "";
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px; /* Adjust thickness of border via these values */
+    background: linear-gradient(45deg, var(--header-gradient-start), var(--header-gradient-end), var(--header-gradient-start));
+    background-size: 400% 400%;
+    animation: gradient-animation 10s ease infinite; /* Reuse existing gradient animation */
+    border-radius: calc(1rem + 2px); /* Match container's border-radius + border thickness */
+    z-index: -1; /* Place behind the container's content */
+    opacity: 0.25;  /* dial back glow very slightly */
+}
+
+
+/* Adjust padding for body if container has padding now */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    margin: 0;
+    /* padding: 2rem; Remove or adjust if container has padding */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, var(--background-gradient-start), var(--background-gradient-end), var(--background-gradient-start));
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+    transition: background-color 0.3s ease;
+    padding: 1rem; /* Added some padding to body to ensure container doesn't touch screen edges */
+}
+
+/* --- Header Animation --- */
+@keyframes fadeInSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header { /* Apply animation to the header container */
+    animation: fadeInSlideDown 0.8s ease-out forwards;
 }
 
 header h1 {
@@ -102,20 +161,22 @@ header p {
 
 .input-form {
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 1rem;
+    grid-template-columns: 1fr 1fr auto; /* Existing layout */
+    gap: 1.25rem; /* Slightly increased gap for better spacing */
     margin: 2.5rem 0;
+    align-items: center; /* Align items vertically for a cleaner look */
 }
 
 .input-form input {
-    padding: 0.75rem 1rem;
+    padding: 0.9rem 1.1rem; /* Increased padding for a more substantial feel */
     font-size: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
+    border: 1px solid var(--border-color); /* Existing border */
+    border-radius: 0.65rem; /* Slightly more rounded corners */
     background-color: var(--input-background);
     color: var(--text-primary);
     outline: none;
     transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for depth */
 }
 
 .input-form input:focus {
@@ -132,17 +193,26 @@ header p {
     background-color: var(--button-background);
     color: white;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; /* Added box-shadow to transition */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
 }
 
 #analyze-button:hover {
     background-color: var(--button-hover-background);
-    transform: translateY(-2px);
+    transform: translateY(-2px); /* Existing hover effect */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0,0,0,0.12); /* Enhanced shadow on hover */
 }
+
+#analyze-button:active { /* Style for when the button is clicked */
+    transform: translateY(-1px) scale(0.98); /* Slight press down and scale effect */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0,0,0,0.08); /* Reduced shadow on click */
+}
+
 #analyze-button:disabled {
     background-color: var(--button-disabled-background);
     cursor: not-allowed;
     transform: translateY(0);
+    box-shadow: none; /* Remove shadow when disabled */
 }
 
 
@@ -156,12 +226,18 @@ header p {
     padding: 1.5rem;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.3s ease-out; /* Added box-shadow to transition */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Default subtle shadow */
 }
 
 #results-container.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+#results-container.visible:hover {
+    transform: translateY(-5px) scale(1.01); /* Pop effect: move up and slightly scale */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
 }
 
 .placeholder {
@@ -263,6 +339,7 @@ header p {
     height: 40px;
     animation: spin 1s linear infinite;
     margin: 4rem auto;
+    box-shadow: 0 0 15px 2px var(--loader-spinner); /* Subtle glow effect */
 }
 
 @keyframes spin {
@@ -294,4 +371,77 @@ header p {
     font-size: 0.75rem;
     opacity: 0.7;
     margin-top: 0.5rem;
+}
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) { /* Breakpoint for tablets and large phones */
+    body {
+        padding: 1rem; /* Reduce body padding */
+    }
+
+    .container {
+        padding: 1.5rem; /* Reduce container padding */
+        margin: 0 1rem; /* Add some horizontal margin */
+    }
+
+    header h1 {
+        font-size: 2rem; /* Reduce header font size */
+    }
+
+    header p {
+        font-size: 1rem; /* Adjust paragraph font size */
+    }
+
+    .input-form {
+        grid-template-columns: 1fr; /* Stack input fields vertically */
+        gap: 1rem; /* Adjust gap for stacked layout */
+    }
+
+    #analyze-button {
+        padding: 0.9rem 1.5rem; /* Adjust button padding */
+    }
+
+    #results-container {
+        padding: 1rem;
+    }
+
+    .result-card h2 {
+        font-size: 1.3rem;
+    }
+    .result-section p, .result-section li {
+        font-size: 0.95rem;
+    }
+
+}
+
+@media (max-width: 480px) { /* Breakpoint for smaller phones */
+    body {
+        padding: 0.5rem;
+    }
+    .container {
+        padding: 1rem;
+        margin: 0 0.5rem;
+        border-radius: 0.75rem; /* Slightly smaller border radius */
+    }
+    .container::before {
+        border-radius: calc(0.75rem + 2px); /* Adjust gradient border radius */
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    .input-form input {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    #analyze-button {
+        font-size: 0.95rem;
+    }
 }
